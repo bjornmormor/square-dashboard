@@ -1,5 +1,6 @@
-javascriptconst https = require('https');
+const https = require('https');
 const http = require('http');
+const fs = require('fs');
 
 const PORT = process.env.PORT || 3000;
 
@@ -16,7 +17,6 @@ const server = http.createServer((req, res) => {
 
   if (req.url === '/' || req.url === '/index.html') {
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    const fs = require('fs');
     res.end(fs.readFileSync('./index.html'));
     return;
   }
@@ -52,4 +52,4 @@ const server = http.createServer((req, res) => {
   res.end('Not found');
 });
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log('Server running on port ' + PORT));
